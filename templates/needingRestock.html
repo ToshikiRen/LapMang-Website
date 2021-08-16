@@ -1,0 +1,48 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <title>Acasa</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class = 'container'>
+        <h3 class="text-center text-info" style = 'margin-bottom:1vh'> Produse cu stoc epuizat sau redus </h3>
+    <ul id = 'myUL' >
+    <li>
+    {% for img in data %}
+  
+            <div class = 'photo-container'>
+                
+                <div style="overflow: hidden; ">
+                    <p style="float: left;"> Denumire: {{ img.Denumire }} </p>
+                    <p style = 'float: right;'> Stoc: {{img['Stoc']}}<p>
+                    <!-- <p style="float: right;">By: {{img.Author}}</p> -->
+                </div>
+                {% with my_variable = img.Imagine %}
+                    <img class = 'image' src="{{url_for('static', filename=['images', my_variable]|join('/') )}}" >
+                {% endwith %}
+            <!--  <img class = 'image' src = "{{img.Url}}"> -->
+                <p>{{ img.Description }}<p>
+                <a class="btn btn-info btn-md" href = 'detalii_produs{{img['produsID']}}'>Detalii</a>
+                {% if session['admin'] == True %}
+                <a class="btn btn-info btn-md" href = 'update_produs{{img['produsID']}}'>Updatare produs</a>
+                {% endif %}  
+            </div>
+        
+    {% endfor %}
+    </li>
+
+    </ul>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+

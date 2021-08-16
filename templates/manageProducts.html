@@ -1,0 +1,56 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <link rel = "stylesheet" href = "../static/table.css">
+    <title>Produse</title>
+
+{% endblock %}
+
+{% block body %}
+    
+    <div>
+    <table id = 'userClient'>
+        <thead>
+        <tr>
+          
+           {% for column in header %}
+              <th scope="col" style = 'text-align: center' >{{ column }}</th>
+
+           {%endfor%}
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for row in data %}
+        <tr>
+
+              {% for column in header %}
+              {% with my_variable = column %}
+              <td  style = 'text-align: center'> 
+                {% if my_variable == 'Stergere' %}
+                   <a href = 'delete_product{{row['produsID']}}' id = {{ row['produsID'] }}> X </a>
+                {%elif my_variable == 'Updatare'%}
+                    <a href = 'update_produs{{row['produsID']}}' id = {{ row['produsID'] }}> V </a>
+                {%else%}
+                     {{ row[my_variable] }}
+                    
+                {%endif%}
+               </td>
+              {% endwith %}
+              {%endfor%}
+        
+         </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+
+
+
+

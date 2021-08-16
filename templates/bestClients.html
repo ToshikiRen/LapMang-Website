@@ -1,0 +1,93 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <link rel = "stylesheet" href = "../static/table.css">
+    <title>Utilizatori si Clienti</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <div>
+    <table id = 'userClient'>
+        <thead>
+        <tr>
+          
+           {% for column in header %}
+              <th scope="col" >{{ column|replace('_',' ') }}</th>
+
+           {%endfor%}
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for row in data %}
+        <tr>
+
+              {% for column in header %}
+              {% with my_variable = column %}
+              <td  > 
+                {% if row[my_variable] != None %}
+                    {{ row[my_variable] }}
+                {%else%}
+                    0
+                {%endif%}
+               </td>
+              {% endwith %}
+              {%endfor%}
+        
+         </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+        <div>
+    <table id = 'userClient'>
+        <thead>
+        <tr>
+          
+           {% for column in header_spend %}
+              <th scope="col" >{{ column|replace('_',' ') }}</th>
+
+           {%endfor%}
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for row in data_spend %}
+        <tr>
+
+              {% for column in header_spend %}
+              {% with my_variable = column %}
+              <td  > 
+                {% if row[my_variable] != None %}
+                    {{ row[my_variable] }}
+                {%else%}
+                    0
+                {%endif%}
+               </td>
+              {% endwith %}
+              {%endfor%}
+        
+         </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+
+<!-- TEMPLATE PENTRU PAGINILE DE DUPA LOGIN-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    {% block head %}
+
+    {% endblock %}
+    
+  </head>
+  <body >
+    
+       <nav class="navbar navbar-dark bg-info" style = '  position: fixed; top: 0;  width: 100%; '>    
+    <div > 
+        <ul class="nav navbar-nav navbar" style = 'display: inline'>
+            <li style = 'display: inline'><a class="text-white" href="/front_page"> Acasa </a></li>
+            <li style = 'display: inline'>|</li>
+            <li style = 'display: inline'><a class="text-white" href="/statistici">Best Sellers</a></li>
+            
+            {% if session['admin'] %}
+              <li style = 'display: inline'>|</li>
+              <li style = 'display: inline'> <a class = "text-white" href = "/manage_users"> Management Utilizatori </a> </li>
+              <li style = 'display: inline'>|</li>
+              <li style = 'display: inline'> <a class = "text-white" href = "/adaugare_produse"> Adaugare Produse </a> </li>
+              <li style = 'display: inline'>|</li>
+              <li style = 'display: inline'> <a class = "text-white" href = "/manage_products"> Management Produse </a> </li>
+              <li style = 'display: inline'>|</li>
+              <li style = 'display: inline'> <a class = "text-white" href = "/needing_restock"> Stoc Redus </a> </li>
+              <li style = 'display: inline'>|</li>
+              <li style = 'display: inline'> <a class = "text-white" href = "/clasament_clienti"> Clasament Clienti </a> </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div>
+      <ul class="nav navbar-nav navbar-right" style = 'display:inline'>
+        <li style = 'display: inline'> <a class = "text-white" href = "/achizitii"> Produse achizitionate </a> </li>
+        <li style = 'display: inline'>|</li>
+        <li style = 'display: inline'> <a class = "text-white" href = "/profile"> Profil </a> </li>
+        <li style = 'display: inline'>|</li>
+        <li style = 'display: inline'><a href="/logout" class="text-white"> Delogare </a></li>
+      
+      </ul>
+    </div>
+    </nav>
+
+      {% block body %}
+
+      {% endblock %}
+
+  </body>
+</html>
+

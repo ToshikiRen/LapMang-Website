@@ -1,0 +1,64 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <title>Profil</title>
+{% endblock %}
+
+{% block body %}
+
+
+        
+        <div class="container">
+             {% if msg %}
+                <p class="text-center text-info"> {{ msg | safe}} <p>
+            {% endif %}
+            <div  class="row justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div  class="col-md-12">
+                        <form id="login-form" class="form" action="/redirectProfile" method="POST">
+                            <h3 class="text-center text-info">Modificare Date Client</h3>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Nume de utilizator:</label><br>
+                                <input type="text" {% if 'username' in data and data.username != '' %} value = "{{data.username}}" {% endif %}
+                                 name="username" id="username" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="lastname" class="text-info">Nume client:</label><br>
+                                <input type="text" {% if 'lastname' in data and data.lastname != '' %} value = "{{data.lastname}}" {% endif %}
+                                 name="lastname" id="lastname" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="firstname" class="text-info">Prenume client:</label><br>
+                                <input type="text" {% if 'firstname' in data and data.firstname != '' %} value = "{{data.firstname}}" {% endif %}
+                                 name="firstname" id="firstname" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="phone" class="text-info">Numar de telefon:</label><br>
+                                <input type="text" {% if 'phone' in data and data.phone != '' %} value = "{{data.phone}}" {% endif %}
+                                 name="phone" id="phone" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label for="address" class="text-info">Adresa:</label><br>
+                                <input type="text" {% if 'address' in data and data.address != '' %} value = "{{data.address}}" {% endif %}
+                                 name="address" id="address" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Modificare Date">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+     
+{% endblock %}
+
+
+
+
+
+

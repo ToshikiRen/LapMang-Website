@@ -1,0 +1,94 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <link rel="stylesheet" href="../static/table.css" />
+    <title>Detalii produs</title>
+
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class = 'container'>
+
+    <a class="btn btn-info btn-md" style = 'float:left; margin-bottom:2vh;' href = '/'>Inapoi</a>
+
+    {% for img in data %}
+
+        <div class = 'photo-details-container'>
+            
+            <div style="overflow: hidden; ">
+                <h4 style="float: left; margin-top:2vh; margin-left:3vw;" class="text-info">{{ img.Denumire }} </h4>
+                
+            </div>
+            {% with my_variable = img.Imagine %}
+                <img class = 'image-details' src="{{url_for('static', filename=['images', my_variable]|join('/') )}}" >
+            {% endwith %}
+            {% if img['Stoc'] %}
+                <a class="btn btn-info btn-md"  href = 'cumpara_produs{{img['produsID']}}'>Cumpara Produs</a>
+            {%else%}
+                <p class="btn btn-warning btn-md" >Stoc insuficient</p>
+            {%endif%} 
+            <!--  <img class = 'image' src = "{{img.Url}}"> -->
+        
+        </div>
+
+    <hr>
+    <h2 class="text-info">Detalii produs</h2>
+    <table id = 'userClient'>
+
+      <tbody>
+      
+
+        {% for column in header %}
+        {% with my_variable = column %}
+            <tr>
+              
+                {% if my_variable != 'Sep' %}
+                    <td class="text-info" > 
+                        {{my_variable|replace('_',' ')}}
+                    </td>
+                    <td >
+                        {{ img[my_variable] }}
+                        
+                        {% if unit[my_variable] %}
+                            {{unit[my_variable]}}
+                        {% endif %}
+                    </td>  
+                    
+                {%else%}
+                    {% with variable = zones.pop() %}
+                    <td colspan="2" style = "padding:20px">              
+                    <h5 class="text-info" >{{ variable }}</h5>
+                    
+                    <!-- Refacere lista zone -->
+                    </td>
+                    {%with variable = zones.insert(0, variable) %}
+                    {% endwith %}
+                
+                {% endwith %}
+
+                {%endif%}
+              
+         
+               </tr>
+              {% endwith %}
+              {%endfor%}
+
+        
+        </tbody>
+        </table>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+
+
+
+
+

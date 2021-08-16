@@ -1,0 +1,52 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link rel="stylesheet" href="../static/img.css" />
+    <link rel = "stylesheet" href = "../static/table.css">
+    <title>Management Produse</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <div>
+    <table id = 'userClient'>
+        <thead>
+        <tr>
+          
+           {% for column in header %}
+              <th scope="col" >{{ column.replace('_', ' ') }}</th>
+
+           {%endfor%}
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for row in data %}
+        <tr>
+
+              {% for column in header %}
+              {% with my_variable = column %}
+              <td  > 
+                {% if my_variable != 'Stergere' %}
+                    {{ row[my_variable] }}
+                {%else%}
+                    <a href = 'delete_user{{row['ProdusID']}}' id = {{ row['ProdusID'] }}> X </a>
+                {%endif%}
+               </td>
+              {% endwith %}
+              {%endfor%}
+
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+<!-- NU ESTE UTILIZAT !!!!-->
+
+
+
+

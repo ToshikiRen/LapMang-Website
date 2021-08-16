@@ -1,0 +1,72 @@
+{% extends 'base_navbar.html' %}
+{% block head %} 
+
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>Adaugare produs</title>
+
+{% endblock %}
+
+{% block body %}
+
+   <div id="login" style = 'margin-top:5vh;'>
+       
+        <div class="container">
+             {% if msg %}
+                <p class="text-center text-info"> {{ msg | safe}} <p>
+            {% endif %}
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6" >
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="/adaugare_produse" method="POST"
+                            enctype = "multipart/form-data">
+                            <h3 class="text-center text-info" style = 'margin-top:5vh;'>Adaugare produse</h3>
+                            
+                            {% for item, fill in fields %}
+                            {% if item == 'Sep' %}
+                                
+                                {% with variable = zones.pop() %}
+                                    
+                                    <h5 class="text-info" >{{ variable }}</h5>
+                                    <hr>
+                                    <!-- Refacere lista zone -->
+                                    
+                                    {%with variable = zones.insert(0, variable) %}
+                                    {% endwith %}
+                                
+                                {% endwith %}
+                               
+                            {% else %}
+                                <div class="form-group">
+                                    <label for= {{item}} class="text-info">{{item.replace('_', ' ')}}</label><br>
+                                    <input type="text" name= "{{item}}" id = "{{item}}" class="form-control" value = "{{fill}}" required>
+                                </div>
+                            {% endif %}
+                            
+                            {% endfor %}
+                            
+                            <h5 class="text-info"> Adaugare Imagine </h5>
+                            <hr>
+                            <div class="form-group">
+                                <label for= "image" class="text-info"> Selectati o imagine </label><br>
+                                 <input    type = "file" name = "image" id = "image" required/>
+                            </div>
+                           
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Adaugare produs">
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
